@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
     return (
         <div className="navbar bg-base-100">
@@ -6,8 +8,8 @@ export default function Header() {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>Home Page</a></li>
-                    <li><a>Pokemon</a></li>
+                    <li><Link to="/">Home Page</Link></li>
+                    <li><Link to="/pokemon">Pokemon</Link></li>
                     <li tabIndex={0}>
                         <details>
                             <summary>Language</summary>
