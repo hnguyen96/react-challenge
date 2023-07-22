@@ -4,11 +4,13 @@ import {
   createBrowserRouter,
   Outlet,
   RouterProvider,
+  Navigate
 } from "react-router-dom";
 import Pokemon from './pages/Pokemon';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Auth from './pages/Auth';
+import { useAppSelector } from './store/hooks'
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,12 @@ export default function App() {
 }
 
 function Root() {
+  const name = useAppSelector(state => state.auth.name)
+
+  if(name == ""){
+    return <Navigate to="/auth" replace={true} />
+  }
+
   return (
     <div className='flex flex-col justify-between h-screen'>
       <Header />
