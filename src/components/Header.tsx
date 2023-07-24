@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { updateName } from "../auth/authSlice";
 
 export default function Header() {
+    const storeName = useAppSelector(state => state.auth.name)
+    const dispatch = useAppDispatch()
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
-                <a className="btn btn-ghost normal-case text-xl">Welcome name</a>
+                <a className="btn btn-ghost normal-case text-xl">Welcome {storeName}</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -22,7 +27,7 @@ export default function Header() {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Logout</a>
+                <button className="btn" onClick={() => dispatch(updateName(""))}>Logout</button>
             </div>
         </div>
     );

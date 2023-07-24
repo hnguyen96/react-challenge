@@ -2,13 +2,19 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {
     Outlet
-  } from "react-router-dom";
+} from "react-router-dom";
+import { useAppSelector } from '../store/hooks'
 
 export function Layout() {
-    return(
+    const name = useAppSelector(state => state.auth.name)
+    console.log(name);
+    // if(name == ""){
+    //   return <Navigate to="/auth" replace={true} />
+    // }
+    return (
         <div className='flex flex-col justify-between h-screen'>
             <Header />
-            <main><Outlet/></main>
+            <Outlet />
             <Footer />
         </div>
     );

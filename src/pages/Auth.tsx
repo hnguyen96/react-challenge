@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import reactLogo from '../assets/react.svg'
 import { updateName } from '../auth/authSlice';
 import { useAppSelector, useAppDispatch } from '../store/hooks'
@@ -8,7 +9,7 @@ type SignInForm = {
 }
 
 export default function Auth() {
-    const name = useAppSelector(state => state.auth.name)
+    const storeName = useAppSelector(state => state.auth.name)
     const dispatch = useAppDispatch()
 
     const { handleSubmit, control } = useForm<SignInForm>({
@@ -18,8 +19,10 @@ export default function Auth() {
     });
 
     const onSubmit = (data: SignInForm) => {
-        dispatch(updateName(data.name))
+        dispatch(updateName(data.name));
     }
+
+    if (storeName != "") return <Navigate to="/" replace={true} />
 
     return (
         <div className="flex items-center justify-center h-screen">
