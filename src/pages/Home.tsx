@@ -1,6 +1,9 @@
 import reactLogo from '../assets/react.svg'
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
+    const { t } = useTranslation();
+
     return (
         <div className='flex flex-col items-center'>
             <div className='flex flex-row'>
@@ -15,7 +18,7 @@ export default function Home() {
                 </p>
             </div>
             <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
+                {t("home")}
             </p>
         </div>
     )

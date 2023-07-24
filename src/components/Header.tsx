@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { updateName } from "../auth/authSlice";
+import { languages } from "../lang";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
     const storeName = useAppSelector(state => state.auth.name)
     const dispatch = useAppDispatch()
+
+    const { i18n } = useTranslation();
+
+    const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const lang_code = e.target.value;
+        i18n.changeLanguage(lang_code);
+    };
 
     return (
         <div className="navbar bg-base-100">
@@ -15,18 +24,16 @@ export default function Header() {
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to="/">Home Page</Link></li>
                     <li><Link to="/pokemon">Pokemon</Link></li>
-                    <li tabIndex={0}>
-                        <details>
-                            <summary>Language</summary>
-                            <ul className="p-2">
-                                <li><a>English</a></li>
-                                <li><a>Vietnamese</a></li>
-                            </ul>
-                        </details>
-                    </li>
                 </ul>
             </div>
             <div className="navbar-end">
+                <select className="select select-secondary max-w-xs" defaultValue={i18n.language} onChange={onChangeLang}>
+                    {languages.map(({ code, label }) => (
+                        <option key={code} value={code}>
+                            {label}
+                        </option>
+                    ))}
+                </select>
                 <button className="btn" onClick={() => dispatch(updateName(""))}>Logout</button>
             </div>
         </div>
