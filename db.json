@@ -1,0 +1,20 @@
+{
+  "pokemons": [
+    {
+      "id": 4,
+      "name": "json-server"
+    },
+    {
+      "name": "alo",
+      "id": 5
+    },
+    {
+      "name": "whatsup",
+      "id": 6
+    },
+    {
+      "name": "pikachu",
+      "id": 7
+    }
+  ]
+}

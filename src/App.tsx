@@ -34,35 +34,13 @@ const router = createBrowserRouter(
   )
 );
 
-
-// [
-//   {
-//     path: "/",
-//     element: <Root />,
-//     children: [
-//       {
-//         index: true,
-//         element: <Home />,
-//       },
-//       {
-//         path: "pokemon",
-//         element: <Pokemon />,
-//       },
-//     ]
-//   },
-//   {
-//     path: "/auth",
-//     element: <Auth />
-//   }
-// ]
-
 export default function App() {
   return <RouterProvider router={router} />;
 }
 
 function Root() {
   const storeName = useAppSelector(state => state.auth.name)
-  console.log(storeName);
+  
   if (storeName == "") {
     return <Navigate to="/auth" replace={true} />
   }
